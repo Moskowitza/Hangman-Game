@@ -1,0 +1,19 @@
+hangmanPsuedoCode
+
+Create an array of possible answers
+Pick answer by random
+Determine how many letters are in answer
+in HTML display a space for each letter in the answers
+-if length of answer is 7 letters long, display 7 empty divs
+
+Game starts when a user enters a letter
+For as many times as there is an answerLetter
+Check  answerLetter against userLetter entered letter in each spot.answerLetter[0] to [answer.length]
+Right:
+If they are equal, replace empty div with div holding the letter,
+Increase win counter by one. && 
+If win counter = answer.length display "YOU WIN" & show image, 
+
+else put letter in "graveyard" and count up losses
+If 
+if wrong answers = 10, display answer = "you lose"

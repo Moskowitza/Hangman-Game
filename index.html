@@ -1,0 +1,153 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>The Hangman Game</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <style>
+    .mystyle {
+      width: 100%;
+      padding: 25px;
+      background-color: coral;
+      color: white;
+      font-size: 25px;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<!-- displaySpaces onload -->
+
+<body>
+  <div id="game">
+    <h2>Let's play hangman:</h2>
+    <!-- we have some divs with IDs to use, may edit them later. -->
+    <div id="answer"></div>
+    <div id="blanks"></div>
+    <div id="right"></div>
+    <div id="graveyard"></div>
+    <!-- <button onclick="myFunction()">let's play</button> -->
+  </div>
+
+  <script type="text/javascript">
+
+    // <!-- Pick a Movie from an array  -->
+    var movie = ['psycho', 'scream', 'halloween'];
+    var moviePick = movie[Math.floor(Math.random() * movie.length)];
+    //moviePick is a STRING
+    document.getElementById("answer").innerHTML = ("the answer is " + moviePick);
+
+    // create array called movieName to recieve BLANKS 
+    //movieName is an Array
+    // movieName[] array which is full of "_" underscores
+    var movieName = [];
+    for (i = 0; i < moviePick.length; i++) {
+      movieName[i] = "_";
+    }
+    //display movieName[-,-,...] in Div with ID BLANKS
+    movieName.toString();
+    document.getElementById("blanks").innerHTML = movieName;
+    // YAY! we now have: 
+    // 1) an array full of dashes called movieName
+    // 2) the length of the movie name 
+    // 3) Display Blanks into the div with ID "answer"
+
+    //  change moviePick to an array of movieLetters[s,c,r,e,a,m]
+    var movieLetters = moviePick.split("");
+
+    // on key press, check array movieLetters
+    document.onkeyup = function (event) {
+      var userGuess = event.key;
+      console.log(userGuess)
+      // compare userGuess to each letter in array "movieLtters"
+      // let's make this a function called letterChecker
+      letterChecker = function () {
+      //compare userGuess to each value in movieLetters[s,c,r,e,a,m]
+        for (i = 0; i < moviePick.length; i++) {
+        // if the userguess is the same as a value,
+          if (userGuess === movieLetters[i]) {
+            //  replace the value with the userGuess
+             movieLetters[i]=userGuess;
+             // change display answer
+             document.getElementById("blanks").innerHTML = movieName;
+          }
+        }
+      }
+    }
+// USER keys down on a letter, store as userGuess and runs it against the  string moviePick
+
+// <!-- 
+//     document.onkeyup = function (event) {
+//       var userGuess = event.key;
+
+//       console.log(userGuess);
+
+
+
+
+//       if (userGuess === moviePick.charAt(i)) {
+//         var right = document.createElement("space");
+//         var rightnode = document.createTextNode(userGuess);
+//         right.appendChild(rightnode);
+//         document.getElementById("space").appendChild(right);
+//       } else {
+//         var wrongCounter = 0;
+//         wrongCounter = wrongCounter + 1;
+//         var wrong = document.createElement("graveyard");
+//         var wrongnode = document.createTextNode(userGuess);
+//         wrong.appendChild(wrongnode);
+//         document.getElementById("graveyard").appendChild(wrong);
+//       }
+//     }
+
+//     //   var moviePickArray = str.moviePick;
+//     //   console.log(moviePickArray);
+
+//     //   for (i = 0; i < moviePick.length; i++) {
+//     //     if (userGuess === moviePickArray[i]) {
+//     //       var guess = document.createElement("div");
+//     //       // Create a text node
+//     //       var textnode = document.createTextNode(userGuess);
+//     //       guess.appendChild(textnode);
+//     //       document.getElementById("space").appendChild(node);
+
+//     //     } else {
+//     //       // Create a new div
+//     //       var wrong = document.createElement("div");
+//     //       var wrongNode = document.createTextNode(userGuess);
+//     //       wrongNode.appendChild(wrong);
+//     //       document.getElementById("graveyard").appendChild(node);
+
+//     //     }
+//     //   }
+//     // }
+
+
+// //       // Reworked our code from last step to use "else if" instead of lots of if statements.
+
+// //       // IF userguess=computerGuess determines the outcome of the game (win/loss/tie), and increments the appropriate number
+// //       if (userGuess === computerGuess) {
+// //         wins = wins + 1;
+// //       }
+// //       else {
+// //         losses = losses+ 1;
+// //       }
+
+
+// //       // Creating a variable to hold our new HTML. Our HTML now keeps track of the user and computer guesses, and wins/losses/ties.
+// //       var html =
+// //         "<p>You chose: " + userGuess + "</p>" +
+// //         "<p>The computer chose: " + computerGuess + "</p>" +
+// //         "<p>wins: " + wins + "</p>" +
+// //         "<p>losses: " + losses + "</p>";
+
+// //       // Set the inner HTML contents of the #game div to our html string
+// //       document.querySelector("#game").innerHTML = html;
+
+// //     }
+//  -->
+
+  </script>
+
+</body>
+
+</html>
