@@ -30,7 +30,24 @@ hangman=function(){
     var wrongCounter =10; //start at 10 everytime and count to zero
     determineWin = function() {
             if (rightCounter === 0) {
-                document.getElementById("poster").innerHTML = "<img src='assets/images/scream.jpeg'>";
+                if(moviePick=='scream'){  //it would be nice to simplify this if movie is an object
+                    document.getElementById("poster").innerHTML = "<img src='assets/images/scream.jpeg'>";
+                    document.getElementById("tunes").innerHTML = "<a href='assets/sounds/scream.mp3'></a>";
+                }
+                else if(moviePick=='psycho'){  
+                    document.getElementById("poster").innerHTML = "<img src='assets/images/psycho.jpeg'>";
+                    document.getElementById("tunes").innerHTML = "<a href='assets/sounds/psycho.mp3'></a>";
+                }
+                else{  
+                    document.getElementById("poster").innerHTML = "<img src='assets/images/halloween.jpeg'>";
+                    document.getElementById("tunes").innerHTML = "<a href='assets/sounds/halloween.mp3'></a>";
+                }   
+        }
+    }
+    determineLose = function(){
+        if (wrongCounter===0){
+            document.getElementById("poster").innerHTML = "you just lost!";
+
         }
     }
 
@@ -52,7 +69,7 @@ hangman=function(){
       }
       graveYard = function () {
         for (i = 0; i < wrongLetters.length; i++) {   //move through the wrong letters array one space at a time
-          if (wrongLetters[i]===userGuess) {        // if the userguess is the same as a value,
+          if (wrongLetters[i]===userGuess && userGuess[i]!==userGuess) {        // if the userguess is the same as a value,
              wrong[i]=userGuess; // replace the value "_" with the userGuess at index of i
             document.getElementById("graveyard").innerHTML = wrong;
             wrongCounter--;
@@ -64,8 +81,8 @@ hangman=function(){
       letterChecker(userGuess); //call these functions and pass in the user guess
       graveYard(userGuess);
       determineWin(rightCounter);
-    }
-    
+      determineLose(wrongCounter);
+    }   
 }
 
 
