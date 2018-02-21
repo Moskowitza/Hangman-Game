@@ -32,21 +32,22 @@ hangman=function(){
             if (rightCounter === 0) {
                 if(moviePick=='scream'){  //it would be nice to simplify this if movie is an object
                     document.getElementById("poster").innerHTML = "<img src='assets/images/scream.jpeg'>";
-                    document.getElementById("tunes").innerHTML = "<a href='assets/sounds/scream.mp3'></a>";
+                    document.getElementsByTagName("AUDIO").innerHTML ="<source src='assets/sounds/scream.mp3'></source>";
                 }
                 else if(moviePick=='psycho'){  
                     document.getElementById("poster").innerHTML = "<img src='assets/images/psycho.jpeg'>";
-                    document.getElementById("tunes").innerHTML = "<a href='assets/sounds/psycho.mp3'></a>";
+                    document.getElementsByTagName("AUDIO").innerHTML = "<source src='assets/sounds/psycho.mp3'></source>";
                 }
                 else{  
                     document.getElementById("poster").innerHTML = "<img src='assets/images/halloween.jpeg'>";
-                    document.getElementById("tunes").innerHTML = "<a href='assets/sounds/halloween.mp3'></a>";
+                    document.getElementsByTagName("AUDIO").innerHTML = "<source src='assets/sounds/halloween.mp3'></source>";
                 }   
         }
     }
     determineLose = function(){
         if (wrongCounter===0){
-            document.getElementById("poster").innerHTML = "you just lost!";
+            // document.getElementById("poster").innerHTML = "you just lost!";
+            document.getElementsByTagName("AUDIO").innerHTML = "<source src='assets/sounds/trombone.mp3'></source>";
 
         }
     }

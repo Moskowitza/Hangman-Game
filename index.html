@@ -6,9 +6,9 @@
   <script type="text/javascript" src="assets/hangman.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
-<!-- displaySpaces onload -->
+<!-- displaySpaces onload(onload="hangman()") moved to button-->
 
-<body onload="hangman()">
+<body >
   <div class="jumbotron text-center">
     <h1>Hangman</h1>
     <p>Pick a letter!</p>
@@ -27,6 +27,7 @@
           </div>
       <div class="col-sm-4">
           <h3>HANGMAN</h3>
+          <button onclick="hangman()">Click me to play</button>        
         <div id="answer"></div>
         <!-- holds the answer while coding-->
         <div id="blanks"></div>
@@ -45,7 +46,10 @@
         <h3>Image</h3>
         <div id="poster"></div>
         <p>we'll put in an image of the right movie</p>
-        <audio id="tunes"></audio>
+        <AUDIO autoplay></AUDIO>
+        <!-- window.onload = function() {
+          document.getElementById("my_audio").play();
+      } -->
         <p>we'll put in an audio player for the movie</p>
 
 
