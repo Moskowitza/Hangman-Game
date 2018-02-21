@@ -13,7 +13,7 @@ hangman=function(){
     var movieLetters = moviePick.split("");//movieLetters is the moviePick represented as the array, it is as long as movieName but has letters instead of dashes.
 
     var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];//good old alphabet
-    var wrongLetters = alphabet.filter(function(x) { 
+    var wrongLetters = alphabet.filter(function(x) { //wrong Letters is an array
             return movieLetters.indexOf(x) < 0;
         });    
     var wrong = []; //wrong letters is alphabet minus the movieLetters
@@ -54,7 +54,8 @@ hangman=function(){
 
     document.onkeyup = function (event) {
       var userGuess = event.key;
-      guesses.push(userGuess);
+      var guesses=[];
+     guesses.push(userGuess);
       document.getElementById("guesses").innerHTML = guesses; //displays guesses on the screen
       letterChecker = function () {     
         for (i = 0; i < moviePick.length; i++) {    //move through the movieLetters Array one space at a time
@@ -63,15 +64,13 @@ hangman=function(){
              document.getElementById("blanks").innerHTML = movieName;  // change display answer
              rightCounter--;
              document.getElementById("rightCounter").innerHTML = rightCounter;  // change display answer
-
-
               }
         }
       }
       graveYard = function () {
         for (i = 0; i < wrongLetters.length; i++) {   //move through the wrong letters array one space at a time
           if (wrongLetters[i]===userGuess && userGuess[i]!==userGuess) {        // if the userguess is the same as a value,
-             wrong[i]=userGuess; // replace the value "_" with the userGuess at index of i
+            wrong[i]=userGuess; // replace the value "_" with the userGuess at index of i
             document.getElementById("graveyard").innerHTML = wrong;
             wrongCounter--;
             document.getElementById("wrongCounter").innerHTML = wrongCounter;  // change display answer
