@@ -34,22 +34,22 @@ hangman=function(){
             if (rightCounter === 0) {
                 if(moviePick=='scream'){  //it would be nice to simplify this if movie is an object
                     document.getElementById("poster").innerHTML = "<img src='assets/images/scream.jpeg'>";
-                    document.getElementsByTagName("AUDIO").innerHTML ="<source src='assets/sounds/scream.mp3'></source>";
+                    document.getElementById("sound").innerHTML ="<source src='assets/sounds/scream.mp3'></source>";
                 }
                 else if(moviePick=='psycho'){  
                     document.getElementById("poster").innerHTML = "<img src='assets/images/psycho.jpeg'>";
-                    document.getElementsByTagName("AUDIO").innerHTML = "<source src='assets/sounds/psycho.mp3'></source>";
+                    document.getElementById("sound").innerHTML = "<source src='assets/sounds/psycho.mp3'></source>";
                 }
                 else{  
                     document.getElementById("poster").innerHTML = "<img src='assets/images/halloween.jpeg'>";
-                    document.getElementsByTagName("AUDIO").innerHTML = "<source src='assets/sounds/halloween.mp3'></source>";
+                    document.getElementById("sound").innerHTML = "<source src='assets/sounds/halloween.mp3'></source>";
                 }   
         }
     }
     determineLose = function(){
         if (wrongCounter===0){
             // document.getElementById("poster").innerHTML = "you just lost!";
-            document.getElementsByTagName("AUDIO").innerHTML = "<source src='assets/sounds/trombone.mp3'></source>";
+            document.getElementById("sound").innerHTML = "<source src='assets/sounds/trombone.mp3'></source>";
 
         }
     }
@@ -86,3 +86,14 @@ hangman=function(){
       determineLose(wrongCounter);
     }   
 }
+function reset(){
+
+    document.getElementById("answer").innerHTML="";
+    document.getElementById("blanks").innerHTML="";
+    document.getElementById("guesses").innerHTML="";
+    document.getElementById("rightCounter").innerHTML="";
+    document.getElementById("graveyard").innerHTML="";
+    document.getElementById("wrongCounter").innerHTML="";
+    document.getElementById("poster").innerHTML="";
+    document.getElementById("sound").innerHTML="";
+}    
