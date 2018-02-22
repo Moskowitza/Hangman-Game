@@ -87,7 +87,8 @@ hangman=function(){
     }   
 }
 function reset(){
-
+    // var rightCounter = moviePick.length; //when the right counter is equal to 0 you win
+    // var wrongCounter =10; //start at 10 everytime and count to zero
     document.getElementById("answer").innerHTML="";
     document.getElementById("blanks").innerHTML="";
     document.getElementById("guesses").innerHTML="";
