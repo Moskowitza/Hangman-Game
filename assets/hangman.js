@@ -1,9 +1,10 @@
 
 hangman=function(){
+
     // Randomly Pick a Movie from an array called movies and represent it on screen with underscores!
     var movies = ['psycho', 'scream', 'halloween']; //movies is comprised of strings
     var moviePick = movies[Math.floor(Math.random() * movies.length)]; //moviePick is a STRING
-    document.getElementById("answer").innerHTML = ("the answer is " + moviePick); //let's put this in the window while we work on our code
+    document.getElementById("answer").innerHTML = ("Shhh...the answer is " + moviePick); //let's put this in the window while we work on our code
 
 
     var movieName = [];  //movie name is an empty array
