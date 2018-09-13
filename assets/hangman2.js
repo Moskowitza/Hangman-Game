@@ -11,14 +11,13 @@ function play() {
     graveyard = new Array(7); //clear out graveyard
     solutionArr = getBlanks(selectedMovie);//repopulate solution Array
     graveyard = getBlanks(graveyard);
-    populate("solutionArr");//the div ID and array have the same name
-    // populate("graveyard", graveyard);//the div ID and array have the same name
+    populate("solutionArr", solutionArr);//the div ID and array have the same name
+    populate("graveyard", graveyard);//the div ID and array have the same name
     // document.getElementById("info").innerHTML =" ";
     // document.addEventListener("keyup", handleGuess);
 }
-function populate(name) {
-    console.log("in populate our name"+name)
-    document.getElementById( name ).innerHTML = name.join(" ");
+function populate(id,arr) {
+    document.getElementById( id ).innerHTML =arr.join(" ");
 }
 
 function randomMovie(array) {
