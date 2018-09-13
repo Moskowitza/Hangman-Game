@@ -3,18 +3,20 @@ var movies = ['psycho', 'scream', 'halloween']; //movies is comprised of strings
 //we are entering guesses from key entry
 //guesses in the global scope
 var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];//good old alphabet
-let guesses = [];
+var guesses = [];
+var selectedMovie=[];
+var solution=[];
 // document.onload =function(){reset()}
 function play() {
     guesses = [];
+    graveyard = [];
     //pick movie
-    let selectedMovie = randomMovie(movies);
-    console.log("Selected Movie : " + selectedMovie);
-    let solution = getBlanks(selectedMovie);
-    console.log("solution:" + solution)
+    selectedMovie = randomMovie(movies);
+    solution = getBlanks(selectedMovie);
     populateBoard(solution);
     document.getElementById("guess").innerHTML =" ";
-    document.addEventListener("keyup", pushguesses)
+    document.addEventListener("keyup", pushguesses);
+    
 }
 function randomMovie(array) {
     let choice = Math.floor(Math.random() * array.length);
@@ -40,6 +42,23 @@ function pushguesses () {
         document.getElementById("guess").innerHTML = "you Guessed "+ guess.toLowerCase();
     }else{
         document.getElementById("guess").innerHTML = "You Already Guessed "+ guess.toLowerCase();
+    }
+    checkSolution();
+}
+function checkSolution(){
+    console.log("check solution")
+    //selectedmovie is an array of letters
+    //compare guess to each letter in selectedMovie
+    for(i=0;i < selectedMovie.length;i++){
+        if (guesses[guesses.length-1] == selectedMovie[i]){
+            solution[i]=guesses[guesses.length-1];
+            populateBoard(solution);
+            console.log("a match")
+        }else{
+            graveyard.push(guess);
+            populateBoard(solution);
+            console.log("to the graveyard");
+        }
     }
 }
 
