@@ -35,7 +35,7 @@ function populateBoard(blanks) {
 function pushguesses () {
     let guess = event.key;
     let check=guesses.indexOf(guess)
-    if (check === -1 && selectedMovie) {
+    if (check === -1) {
         guesses.push(guess)
         document.getElementById("guess").innerHTML = "you Guessed "+ guess.toLowerCase();
     }else{
