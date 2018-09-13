@@ -5,15 +5,17 @@ function play(){
     //pick movie
    let selectedMovie=randomMovie(movies);
    console.log("Selected Movie : "+selectedMovie);
-   let solution=createBoard(selectedMovie);
+   let solution=getBlanks(selectedMovie);
    console.log("solution:"+solution)
+   populateBoard(solution);
+
 }
 function randomMovie(array){
     let choice = Math.floor(Math.random()*array.length);
     return array[choice].split("");
 }
 //create spaces for each letter
-createBoard=function(answer){
+getBlanks=function(answer){
     let spaces=[]
     for(i=0;i<answer.length;i++){
         let tile = document.createElement("div"+i).innerHTML="_";
@@ -21,6 +23,10 @@ createBoard=function(answer){
     }
     return spaces;
 }
+function populateBoard(blanks){
+    document.getElementById("blanks").innerHTML=blanks.join(" ");
+}
+
 function reset() {
     // var rightCounter = moviePick.length; //when the right counter is equal to 0 you win
     // var wrongCounter =10; //start at 10 everytime and count to zero
