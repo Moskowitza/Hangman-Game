@@ -1,23 +1,26 @@
-var movies = ['psycho', 'scream', 'halloween']; //movies is comprised of strings
-// Pick a movie to play
-//we are entering guesses from key entry
-//guesses in the global scope
+//our Globabl Variables
+const movies = ['psycho', 'scream', 'halloween']; //movies is comprised of strings
 var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];//good old alphabet
-var guesses = [];
-var selectedMovie=[];
-var solution=[];
+var guesses = []; //user guesses should be the solution guesses + graveyard , so concat these
+var selectedMovie=[]; //random selection from movie array
+var solution=[]; // solution, to match against selectedMovie
+var graveyard=[];//empty array to hold wrong guesses
 // document.onload =function(){reset()}
 function play() {
-    guesses = [];
-    graveyard = [];
-    //pick movie
-    selectedMovie = randomMovie(movies);
-    solution = getBlanks(selectedMovie);
-    populateBoard(solution);
-    document.getElementById("guess").innerHTML =" ";
-    document.addEventListener("keyup", pushguesses);
-    
+    selectedMovie = randomMovie(movies); //select a movie
+    graveyard = new Array(7); //clear out graveyard
+    solutionArr = getBlanks(selectedMovie);//repopulate solution Array
+    graveyard = getBlanks(graveyard);
+    populate("solutionArr");//the div ID and array have the same name
+    // populate("graveyard", graveyard);//the div ID and array have the same name
+    // document.getElementById("info").innerHTML =" ";
+    // document.addEventListener("keyup", handleGuess);
 }
+function populate(name) {
+    console.log("in populate our name"+name)
+    document.getElementById( name ).innerHTML = name.join(" ");
+}
+
 function randomMovie(array) {
     let choice = Math.floor(Math.random() * array.length);
     return array[choice].split("");
@@ -31,17 +34,21 @@ getBlanks = function (answer) {
     }
     return spaces;
 }
-function populateBoard(blanks) {
-    document.getElementById("blanks").innerHTML = blanks.join(" ");
-}
+
 function pushguesses () {
     let guess = event.key;
-    let check=guesses.indexOf(guess)
-    if (check === -1) {
+    let checkGuess=guesses.indexOf(guess) //check if already guessed
+    let checkSolution=solution.indexOf(guess)
+    let checkGraveyard=graveyard.indexOf(guess)
+    if (checkGuess === -1 && checkSolution === -1 ) {
         guesses.push(guess)
         document.getElementById("guess").innerHTML = "you Guessed "+ guess.toLowerCase();
-    }else{
+    }else if (checkGraveyard===-1){
+        graveyard.push(guess)
+        document.getElementById("guess").innerHTML = "Wrong Guess "+ guess.toLowerCase();
+    } else{
         document.getElementById("guess").innerHTML = "You Already Guessed "+ guess.toLowerCase();
+
     }
     checkSolution();
 }
@@ -61,6 +68,7 @@ function checkSolution(){
         }
     }
 }
+
 function reset() {
     var rightCounter = moviePick.length; //when the right counter is equal to 0 you win
     var wrongCounter = 10; //start at 10 everytime and count to zero
