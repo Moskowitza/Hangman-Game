@@ -1,11 +1,10 @@
+var movies = ['psycho', 'scream', 'halloween']; //movies is comprised of strings
 
 hangman = function () {
 
     // Randomly Pick a Movie from an array called movies and represent it on screen with underscores!
-    var movies = ['psycho', 'scream', 'halloween']; //movies is comprised of strings
-    var moviePick = movies[Math.floor(Math.random() * movies.length)]; //moviePick is a STRING
-    // document.getElementById("answer").innerHTML = ("Shhh...the answer is " + moviePick); //let's put this in the window while we work on our code
-
+    // randomly pick a movie
+    var moviePick = movies[Math.floor(Math.random() * movies.length)]; 
 
     var movieName = [];  //movie name is an empty array
     for (i = 0; i < moviePick.length; i++) {  //create an array as long as the length of the pick, fill it with "_"
@@ -34,7 +33,7 @@ hangman = function () {
 
     document.onkeyup = function (event) {
         var userGuess = event.key;
-        var guesses = [];
+        guesses = [];
         guesses.push(userGuess);
         document.getElementById("guesses").innerHTML = guesses; //displays guesses on the screen
         letterChecker = function () {

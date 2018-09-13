@@ -3,33 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <title>The Hangman Game</title>
-  <script type="text/javascript" src="assets/hangman.js"></script>
+  <!-- JS file -->
+  <script type="text/javascript" src="assets/hangman2.js"></script>
+  <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <!-- displaySpaces onload(onload="hangman()") moved to button-->
 
-<body >
+<body>
   <div class="jumbotron text-center">
     <h1>Hangman: Horror Movies</h1>
     <p>Pick a letter!</p>
   </div>
   <div class="container">
     <div class="row">
-        <div class="col-sm-4">
-            <h3>Bugs and Notes:</h3>
-            <ul>
-            <li>User Lowercase and don't hit extra keys...they're not getting checked</li>
-            <li>After you play through, use the RESET button to play again</li>
-            <li>if you type a letter twice it runs the counter up</li>
-            <li>You get 10 wrong guesses before getting the loser prize.</li>
-            <!-- <li>Yes, the answer is posted on screen.</li> -->
-          </ul>
-          </div>
+      <!-- left column -->
       <div class="col-sm-4">
-          <h3>HANGMAN</h3>
-          <button onclick="hangman()">Click me to play</button> 
-          <button onclick="reset()">Reset</button>         
-        <div id="answer"></div>
+        <h3>Bugs and Notes:</h3>
+        <ul>
+          <li>User Lowercase and don't hit extra keys...they're not getting checked</li>
+          <li>After you play through, use the RESET button to play again</li>
+          <li>if you type a letter twice it runs the counter up</li>
+          <li>You get 10 wrong guesses before getting the loser prize.</li>
+          <!-- <li>Yes, the answer is posted on screen.</li> -->
+        </ul>
+      </div>
+      <!-- Game Play -->
+      <div class="col-sm-4">
+        <h3>HANGMAN</h3>
+        <button onclick="play()">Click me to play</button>
+        <button onclick="reset()">Reset</button>
+        <!-- <div id="answer"></div> -->
         <!-- holds the answer while coding-->
         <div id="blanks"></div>
         <!-- holds the blank, right answers-->
@@ -42,12 +46,12 @@
         <div id="wrongCounter"></div>
         <!-- Count down to lose, maybe delete-->
       </div>
-
+<!-- Results -->
       <div class="col-sm-4">
         <h3>Winner's Prizes</h3>
         <div id="poster">we'll put in an image of the right movie</div>
 
-        <AUDIO  autoplay id="sound" ></AUDIO>
+        <AUDIO autoplay id="sound"></AUDIO>
         <!-- window.onload = function() {
           document.getElementById("my_audio").play();
       } -->
