@@ -4,7 +4,7 @@ var movies = ['psycho', 'scream', 'halloween']; //movies is comprised of strings
 //guesses in the global scope
 var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];//good old alphabet
 let guesses = [];
-
+// document.onload =function(){reset()}
 function play() {
     guesses = [];
     //pick movie
@@ -13,8 +13,8 @@ function play() {
     let solution = getBlanks(selectedMovie);
     console.log("solution:" + solution)
     populateBoard(solution);
-    // check for win
-
+    document.getElementById("guess").innerHTML =" ";
+    document.addEventListener("keyup", pushguesses)
 }
 function randomMovie(array) {
     let choice = Math.floor(Math.random() * array.length);
@@ -32,15 +32,14 @@ getBlanks = function (answer) {
 function populateBoard(blanks) {
     document.getElementById("blanks").innerHTML = blanks.join(" ");
 }
-document.onkeyup = function () {
+function pushguesses () {
     let guess = event.key;
     let check=guesses.indexOf(guess)
-    if (check === -1) {
+    if (check === -1 && selectedMovie) {
         guesses.push(guess)
-        console.log(guesses)
+        document.getElementById("guess").innerHTML = "you Guessed "+ guess.toLowerCase();
     }else{
-        console.log("already guessed")
-        
+        document.getElementById("guess").innerHTML = "You Already Guessed "+ guess.toLowerCase();
     }
 }
 
@@ -57,6 +56,7 @@ function reset() {
     document.getElementById("wrongCounter").innerHTML = "";
     document.getElementById("poster").innerHTML = "";
     document.getElementById("sound").innerHTML = "";
+    document.getElementById("guess").innerHTML ="Click Start to play"
 }
 
 
