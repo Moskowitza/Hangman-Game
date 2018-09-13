@@ -1,36 +1,55 @@
 var movies = ['psycho', 'scream', 'halloween']; //movies is comprised of strings
 // Pick a movie to play
+//we are entering guesses from key entry
+//guesses in the global scope
+var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];//good old alphabet
+let guesses = [];
 
-function play(){
+function play() {
+    guesses = [];
     //pick movie
-   let selectedMovie=randomMovie(movies);
-   console.log("Selected Movie : "+selectedMovie);
-   let solution=getBlanks(selectedMovie);
-   console.log("solution:"+solution)
-   populateBoard(solution);
+    let selectedMovie = randomMovie(movies);
+    console.log("Selected Movie : " + selectedMovie);
+    let solution = getBlanks(selectedMovie);
+    console.log("solution:" + solution)
+    populateBoard(solution);
+    // check for win
 
 }
-function randomMovie(array){
-    let choice = Math.floor(Math.random()*array.length);
+function randomMovie(array) {
+    let choice = Math.floor(Math.random() * array.length);
     return array[choice].split("");
 }
 //create spaces for each letter
-getBlanks=function(answer){
-    let spaces=[]
-    for(i=0;i<answer.length;i++){
-        let tile = document.createElement("div"+i).innerHTML="_";
+getBlanks = function (answer) {
+    let spaces = []
+    for (i = 0; i < answer.length; i++) {
+        let tile = document.createElement("div" + i).innerHTML = "_";
         spaces.push(tile)
     }
     return spaces;
 }
-function populateBoard(blanks){
-    document.getElementById("blanks").innerHTML=blanks.join(" ");
+function populateBoard(blanks) {
+    document.getElementById("blanks").innerHTML = blanks.join(" ");
+}
+document.onkeyup = function () {
+    let guess = event.key;
+    let check=guesses.indexOf(guess)
+    if (check === -1) {
+        guesses.push(guess)
+        console.log(guesses)
+    }else{
+        console.log("already guessed")
+        
+    }
 }
 
+
+
 function reset() {
-    // var rightCounter = moviePick.length; //when the right counter is equal to 0 you win
-    // var wrongCounter =10; //start at 10 everytime and count to zero
-    // document.getElementById("answer").innerHTML = "";
+    var rightCounter = moviePick.length; //when the right counter is equal to 0 you win
+    var wrongCounter = 10; //start at 10 everytime and count to zero
+    document.getElementById("answer").innerHTML = "";
     document.getElementById("blanks").innerHTML = "";
     document.getElementById("guesses").innerHTML = "";
     document.getElementById("rightCounter").innerHTML = "";
@@ -38,7 +57,7 @@ function reset() {
     document.getElementById("wrongCounter").innerHTML = "";
     document.getElementById("poster").innerHTML = "";
     document.getElementById("sound").innerHTML = "";
-}    
+}
 
 
 // hangman = function () {
@@ -115,7 +134,7 @@ function reset() {
 //                 // document.getElementById("poster").innerHTML = "you just lost!";
 //                 document.getElementById("poster").innerHTML = "<img src='assets/images/hangman.jpeg'>";
 //                 document.getElementById("sound").innerHTML = "<source src='assets/sounds/trombone.mp3'></source>";
-    
+
 //             }
 //         }
 //         letterChecker(userGuess); //call these functions and pass in the user guess
