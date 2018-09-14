@@ -7,7 +7,14 @@
 ## Game Play
 * A User presses a keyboard key
 
-- loop through the selectedMovie 
- -   if the guess matches the position-> assign the guess to the same position in the solution array.
--- if guess is not in guess array and is in 
-- if guess not is not in the guess array -> push it into the guess array
+1. check to see if the user has already guessed this letter
+- if the letter is in the solution Array || graveyard ->you already guessed this letter.
+
+ELSE
+
+- loop through the selectedMovie comparing match
+*  If the guess matches the position-> assign the guess to the same position(s) in the solution array.
+
+-- if guess is not in selectedMovie array -> push it into theGraveyard
+
+Now check to see if we won or lost

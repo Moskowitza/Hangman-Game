@@ -2,24 +2,26 @@
 const movies = ['psycho', 'scream', 'halloween']; //movies is comprised of strings
 var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];//good old alphabet
 var guesses = []; //user guesses should be the solution guesses + graveyard , so concat these
-var selectedMovie=[]; //random selection from movie array
-var solution=[]; // solution, to match against selectedMovie
-var graveyard=[];//empty array to hold wrong guesses
+var selectedMovie = []; //random selection from movie array
+var solutionArr = []; // correct guesses, to match against selectedMovie
+var graveyard = [];//wrong guesses, when it doesn't contain any more blanks you lose
+
 // document.onload =function(){reset()}
 function play() {
     selectedMovie = randomMovie(movies); //select a movie
+    console.log(selectedMovie)
     graveyard = new Array(7); //clear out graveyard
     solutionArr = getBlanks(selectedMovie);//repopulate solution Array
     graveyard = getBlanks(graveyard);
     populate("solutionArr", solutionArr);//the div ID and array have the same name
     populate("graveyard", graveyard);//the div ID and array have the same name
-    // document.getElementById("info").innerHTML =" ";
-    // document.addEventListener("keyup", handleGuess);
+    document.getElementById("info").innerHTML = " ";
+    document.addEventListener("keyup", handleGuess);
 }
-function populate(id,arr) {
-    document.getElementById( id ).innerHTML =arr.join(" ");
+function populate(id, arr) {
+    document.getElementById(id).innerHTML = " ";
+    return document.getElementById(id).innerHTML = arr.join(" ");
 }
-
 function randomMovie(array) {
     let choice = Math.floor(Math.random() * array.length);
     return array[choice].split("");
@@ -34,37 +36,46 @@ getBlanks = function (answer) {
     return spaces;
 }
 
-function pushguesses () {
+function handleGuess() {
     let guess = event.key;
-    let checkGuess=guesses.indexOf(guess) //check if already guessed
-    let checkSolution=solution.indexOf(guess)
-    let checkGraveyard=graveyard.indexOf(guess)
-    if (checkGuess === -1 && checkSolution === -1 ) {
-        guesses.push(guess)
-        document.getElementById("guess").innerHTML = "you Guessed "+ guess.toLowerCase();
-    }else if (checkGraveyard===-1){
-        graveyard.push(guess)
-        document.getElementById("guess").innerHTML = "Wrong Guess "+ guess.toLowerCase();
-    } else{
-        document.getElementById("guess").innerHTML = "You Already Guessed "+ guess.toLowerCase();
-
+    let alreadyGuessed = solutionArr.concat(graveyard)
+    let checkGuess = alreadyGuessed.indexOf(guess) //check if already guessed
+    //if a new letter is guessed
+    if (checkGuess === -1) {
+        checkSolution(guess)
+        //if we already guessed
+        document.getElementById("info").innerHTML = "New Guess " + guess.toLowerCase();
+        checkWinLose()
+    } else {
+        document.getElementById("info").innerHTML = "You Already Guessed " + guess.toLowerCase();
     }
-    checkSolution();
+    return checkWinLose();
 }
-function checkSolution(){
-    console.log("check solution")
+function checkSolution(guess) {
+    console.log("check solution " + guess)
     //selectedmovie is an array of letters
     //compare guess to each letter in selectedMovie
-    for(i=0;i < selectedMovie.length;i++){
-        if (guesses[guesses.length-1] == selectedMovie[i]){
-            solution[i]=guesses[guesses.length-1];
-            populateBoard(solution);
-            console.log("a match")
-        }else{
-            graveyard.push(guess);
-            populateBoard(solution);
-            console.log("to the graveyard");
+    if (selectedMovie.indexOf(guess) === -1) {
+        graveyard.pop();
+        graveyard.unshift(guess);
+        console.log("to the graveyard " + graveyard);
+    } else {
+        for (i = 0; i < selectedMovie.length; i++) {
+            if (selectedMovie[i] == guess) {
+                solutionArr[i] = guess;
+                console.log("a match " + solutionArr)
+            }
         }
+    }
+    populate("solutionArr", solutionArr);
+    populate("graveyard", graveyard)
+    
+}
+function checkWinLose() {
+    if (selectedMovie.join() == solutionArr.join()) {
+        document.getElementById("info").innerHTML = "You Win";
+    } else if (graveyard.indexOf("_") === -1) {
+        document.getElementById("info").innerHTML = "You lose";
     }
 }
 
@@ -79,5 +90,5 @@ function reset() {
     document.getElementById("wrongCounter").innerHTML = "";
     document.getElementById("poster").innerHTML = "";
     document.getElementById("sound").innerHTML = "";
-    document.getElementById("guess").innerHTML ="Click Start to play"
+    document.getElementById("guess").innerHTML = "Click Start to play"
 }
