@@ -74,21 +74,16 @@ function checkSolution(guess) {
 function checkWinLose() {
     if (selectedMovie.join() == solutionArr.join()) {
         document.getElementById("info").innerHTML = "You Win";
+        document.removeEventListener("keyup", handleGuess)
     } else if (graveyard.indexOf("_") === -1) {
         document.getElementById("info").innerHTML = "You lose";
+        document.removeEventListener("keyup", handleGuess)
     }
 }
 
 function reset() {
-    var rightCounter = moviePick.length; //when the right counter is equal to 0 you win
-    var wrongCounter = 10; //start at 10 everytime and count to zero
-    document.getElementById("answer").innerHTML = "";
-    document.getElementById("blanks").innerHTML = "";
-    document.getElementById("guesses").innerHTML = "";
-    document.getElementById("rightCounter").innerHTML = "";
+    document.getElementById("info").innerHTML = "";
+    document.getElementById("solutionArr").innerHTML = "";
     document.getElementById("graveyard").innerHTML = "";
-    document.getElementById("wrongCounter").innerHTML = "";
-    document.getElementById("poster").innerHTML = "";
-    document.getElementById("sound").innerHTML = "";
-    document.getElementById("guess").innerHTML = "Click Start to play"
+
 }
