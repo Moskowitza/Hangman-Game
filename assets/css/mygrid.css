@@ -1,5 +1,10 @@
 #header {
     text-align: center;
+    background: darkorange;
+}
+h1 {
+    size:50em;
+    color:black;
 }
 .container{
     display: grid;
@@ -15,15 +20,15 @@
 .game{
     display:grid;
     grid-template-rows:3fr 2fr 1fr 2fr;
-    justify-items: stretch;
+    justify-items: center;
     align-items: center;
 }
 .container > div{
-    background: #eee;
+    background:darkorchid;
     padding: 1em;
 }
 .container > div:nth-child(odd){
-    background: #ddd;
+    background: darkolivegreen;
 }
 #info{
     align-self: center;
