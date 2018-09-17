@@ -3,8 +3,15 @@
     background: darkorange;
 }
 h1 {
-    size:50em;
+    size:80em;
     color:black;
+    font-family: 'Freckle Face', cursive;
+
+}
+h3 {
+    color: darkred;
+    font-family: 'Freckle Face', cursive;
+
 }
 .container{
     display: grid;
