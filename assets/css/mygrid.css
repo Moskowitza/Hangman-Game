@@ -1,27 +1,33 @@
+body{
+    background: midnightblue;
+}
 #header {
     text-align: center;
     background: darkorange;
+   
 }
-h1 {
-    size:80em;
+#header > h1{
+    padding:1em;
+    size:5em;
     color:black;
+    text-shadow: 3px 2px red;
     font-family: 'Freckle Face', cursive;
 
+}
+#header > p {
+    color:darkblue;
 }
 h3 {
     color: darkred;
-    font-family: 'Freckle Face', cursive;
+    size: 2.5em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
 }
 .container{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     display: grid;
     grid-template-columns: 2fr 2fr 1fr;
-    /* grid-template-columns:repeat(3,1fr 2fr); */
-
-    /* grid-column-gap: 1em;
-    grid-row-gap: 1em; */
     grid-gap: 1em;
-    /* grid-auto-rows:100px; */
     grid-auto-rows: (100px, auto);
 }
 .game{
@@ -30,6 +36,9 @@ h3 {
     justify-items: center;
     align-items: center;
 }
+.container:hover {
+    size:2em;
+}
 .container > div{
     background:darkorchid;
     padding: 1em;
@@ -37,6 +46,18 @@ h3 {
 .container > div:nth-child(odd){
     background: darkolivegreen;
 }
+.container > div:nth-child(odd):hover{
+    background: whitesmoke;
+}
 #info{
     align-self: center;
+}
+#info:hover{
+    background:whitesmoke;
+}
+#solutionArr:hover{
+    background:whitesmoke;
+}
+#graveyard:hover{
+    background:white;
 }
