@@ -9,6 +9,8 @@ var graveyard = [];//wrong guesses, when it doesn't contain any more blanks you 
 // document.onload =function(){reset()}
 function play() {
     selectedMovie = randomMovie(movies); //select a movie
+    movieslug=selectedMovie.join("");
+    console.log(movieslug);
     console.log(selectedMovie)
     graveyard = new Array(7); //clear out graveyard
     solutionArr = getBlanks(selectedMovie);//repopulate solution Array
@@ -75,6 +77,8 @@ function checkWinLose() {
     if (selectedMovie.join() == solutionArr.join()) {
         document.getElementById("info").innerHTML = "You Win";
         document.removeEventListener("keyup", handleGuess)
+        document.getElementById("poster").innerHTML = "<img src='assets/images/"+movieslug+".jpeg'>";
+
     } else if (graveyard.indexOf("_") === -1) {
         document.getElementById("info").innerHTML = "You lose";
         document.removeEventListener("keyup", handleGuess)
@@ -85,5 +89,7 @@ function reset() {
     document.getElementById("info").innerHTML = "";
     document.getElementById("solutionArr").innerHTML = "";
     document.getElementById("graveyard").innerHTML = "";
+    document.getElementById("poster").innerHTML = "";
+
 
 }
